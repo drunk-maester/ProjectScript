@@ -1,0 +1,2 @@
+# ScrapyScripts
+Basic Scrapping scripts
