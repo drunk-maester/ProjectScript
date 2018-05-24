@@ -5,8 +5,8 @@ import bs4
 
 
 
-api_key = '4otIvfgT'
-shared_secret = 'hlSQjRtH'
+api_key = '#########'
+shared_secret = '#########'
 hash1 = hashlib.sha1()
 hash1.update(shared_secret.encode('utf-8'))
 hash1.update(str(round(time.time())).encode('utf-8'))
