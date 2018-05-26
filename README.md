@@ -1,5 +1,6 @@
 # ScrapyScripts
-Basic Scrapping scripts
+
+Scrapping scripts
 
 
 This repo consists of scripts to scrap data from sites .
