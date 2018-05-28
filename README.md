@@ -13,7 +13,9 @@ https://www.slideshare.net/developers
 
 Sites used are : quotes.toscrape.com
                : nith.ac.in
-
+               : glassdoor.com
+               : slideshare.com
+               : toptal.com
 API's used : Slideshare
 
 Scrapy module is used to scrap data.
