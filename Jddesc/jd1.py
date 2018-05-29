@@ -2,7 +2,7 @@
 import scrapy
 import json
 
-lis=['python', 'java' ,'nodejs']
+lis=['python', 'java' ,'nodejs', 'web']
 z=0
 
 class Jd1Spider(scrapy.Spider):
@@ -37,12 +37,12 @@ class Jd1Spider(scrapy.Spider):
          "Responsibilities":Responsibilities,
          "Qualifications": Qualifications
              }
-        with open('Jddesc.json', 'r+') as f:
+        with open('jddesc1.json', 'r+') as f:
             f1 =json.load(f)
             print(type(f1))
-        with open('Jddesc.json', 'r+') as f:
+        with open('jddesc1.json', 'r+') as f:
              f1.append(items)
              json.dump(f1,f)
         z=z+1
-        if(z<3):
+        if(z<4):
            yield scrapy.Request(url =self.urls.format(lis[z]), callback= self.parse )
