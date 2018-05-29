@@ -16,9 +16,15 @@ Sites used are : quotes.toscrape.com
                : glassdoor.com
                : slideshare.com
                : toptal.com
+               : talentlyft.com
+               : resources.workable.com
 API's used : Slideshare
 
 Scrapy module is used to scrap data.
+
+Request module is used in case of scrapping with slideshare API's.
+
+Json file is maintained for storing data and reading data from.
 
 In case of pages with Javascript, scrapy-splash module is used.
 
