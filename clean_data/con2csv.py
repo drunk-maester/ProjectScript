@@ -16,7 +16,7 @@ def changepath(path):
 
 def pdfcontent(file1):
  with open(file1, 'rb') as f:
-    a= pd1.PdfFileReader(f)
+    a= pd1.PdfFileReader(f , strict =True)
     b=a.numPages
     lis=[]
     for i in range(b):
@@ -55,15 +55,16 @@ for (dirpath , dirnames , filenames) in walk('/home/shubhi/Data4model/'):
         dname.extend(dirnames)
 jd=[]
 lis1=[]
-for i in dname:
-  changepath(i)
-  lis=[]
-  print(i)
-  for k in os.listdir("/home/shubhi/Data4model/"+i+"/"):
-    a=pdfcontent(k)
-    if(len(a)>80 and type(a)!=None):
-      
-          lis.append(a)
-
+with open('log1.csv', 'w') as out_file:
+        writer = csv.writer(out_file)
+        for i in dname:
+         changepath(i)
+         lis=[]
+         print(i)
+         for k in os.listdir("/home/shubhi/Data4model/"+i+"/"):
+           a=pdfcontent(k)
+           if(len(a)>80 and type(a)!=None):
+               writer.writerow([a, i])
+          
        # with open('log.csv', '') as out_file:
           # writer = csv.writer(out_file)
