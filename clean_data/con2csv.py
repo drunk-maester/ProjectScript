@@ -44,7 +44,7 @@ def cleanpdf(lis):
   return str1fil
    
 def initializecsv():
- with open('log1.csv', 'r+') as out_file:
+ with open('log1.csv', 'w') as out_file:
         writer = csv.writer(out_file)
         writer.writerow(('Content','JD'))
 
@@ -55,7 +55,7 @@ for (dirpath , dirnames , filenames) in walk('/home/shubhi/Data4model/'):
         dname.extend(dirnames)
 jd=[]
 lis1=[]
-with open('log1.csv', 'w') as out_file:
+with open('log1.csv', 'r+') as out_file:
         writer = csv.writer(out_file)
         for i in dname:
          changepath(i)
@@ -66,5 +66,4 @@ with open('log1.csv', 'w') as out_file:
            if(len(a)>80 and type(a)!=None):
                writer.writerow([a, i])
           
-       # with open('log.csv', '') as out_file:
-          # writer = csv.writer(out_file)
+   
