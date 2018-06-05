@@ -11,7 +11,7 @@ import urllib.request
 
 api_key = '++++++++++'
 
-shared_secret = '+++++++++'
+shared_secret = '+++++++++'					
 
 
 # Strings to find and download data
