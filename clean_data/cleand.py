@@ -1,7 +1,7 @@
 import csv
 import threading
 import json
-
+import pandas as pd
 
 def preparedic(map1,map2):
  
@@ -26,7 +26,7 @@ def preparedic(map1,map2):
              map2[row[1]]=map2[row[1]] + row[0]
 
 def initialize1():
- with open('stopwordslog.csv', 'a+') as out_file:
+ with open('finalcontent.csv', 'a+') as out_file:
         writer = csv.writer(out_file)
         writer.writerow(('JD', 'FinalContent'))
 
@@ -47,15 +47,27 @@ def cleanlog(map1):
    for i in lis:
        if(i in lis1):
           lis1.remove(i)
-   with open('stopwordslog.csv', 'a+') as out_file:
+   with open('finalcontent.csv', 'a+') as out_file:
         writer = csv.writer(out_file)
         writer.writerow((i," ".join(list(lis1))))
    lis.clear()       
 
 
+
+def prep(map3):
+ df =pd.read_csv('finalcontent.csv')
+ for i in df.itertuples():
+    map3[row[1]]= row[2]
+
+def cleanlog1(map2, map3):
+    for i , j in map2.items():
+      
+ 
 map1={}  
 map2={}
+map3={}
 preparedic(map1,map2)
 initialize1()
 cleanlog(map1)
-
+prep(map3)
+cleanlog1(map2,map3)
