@@ -60,8 +60,16 @@ def prep(map3):
     map3[row[1]]= row[2]
 
 def cleanlog1(map2, map3):
-    for i , j in map2.items():
-      
+     lis1=[]
+     for i , j in map2.items():
+        lis = (map3[i]).split(" ")
+        lis2=j.split(" ") 
+        for k in lis :
+               if k in lis2:
+                 if(lis2.count(k))>1):
+                      lis1.extend(k for x in range(lis2.count(k)))
+                      
+                 lis2.remove()
  
 map1={}  
 map2={}
