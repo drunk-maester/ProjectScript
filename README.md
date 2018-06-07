@@ -41,6 +41,10 @@ To study about pdfminer, check the following links --
 1. https://www.unixuser.org/~euske/python/pdfminer/programming.html
 2. https://stackoverflow.com/questions/26494211/extracting-text-from-a-pdf-file-using-pdfminer-in-python?utm_medium=organic&utm_source=google_rich_qa&utm_campaign=google_rich_qa
 
+
+clean_data folder is there to preprocess the data collected before feeding it to the models.
+Cleaning and preprocessing is necessary to get better results and overfitting is not there.
+
 Models --
 1. Multinomial Naive Bayes Classifier
 
