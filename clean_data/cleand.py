@@ -68,7 +68,15 @@ def prep(map3):
  for i in df.itertuples():
     map3[i[1]]= i[2]
 
+def writedata1(lis1):
+    with open('finalcontentjd.csv', 'a+') as out_file:
+          writer = csv.writer(out_file)
+          writer.writerow((i," ".join(list(lis1))))
 
+def writedata2(lis5):
+ with open('stopwordsjd.csv', 'a+') as out_file:
+          writer = csv.writer(out_file)
+          writer.writerow((i," ".join(list(lis5))))
 
 def cleanbylis(lis , lis2, lis1):
      for k in set(lis) :
@@ -81,6 +89,8 @@ def cleanbylis(lis , lis2, lis1):
                  else:     
                    lis1.append(k)
                    lis2.remove(k)
+               else:
+                  lis1.append(k) 
 
 def cleanbylis1(lis5 , lis2):
      for v in set(lis5):
@@ -95,13 +105,17 @@ def cleanbylis2(lis4 , lis5 , lis1 , lis2):
      cleanbylis1(lis4,lis2)
      lis5.extend(lis2)
            
+
 def cleanlog1(map2, map3):
      lis1=[]
      lis5=[]
+     initialize2()
+     initialize3()
      for i in map2:
         print('Preparing data for', i)
         lis = (map3[i.lower()]).split(" ")
         for j in map2[i]:
+         
          lis2=j.split(" ") 
          print('Cleaning starts, total number of words now ', len(lis2))
          cleanbylis1(lis1 , lis2)
@@ -114,13 +128,10 @@ def cleanlog1(map2, map3):
          print('Enter words you want to keep ...')
          lis4= input("-----> ").split(' ')
          cleanbylis2(lis4 , lis5 , lis1 , lis2)
-         
-        with open('finalcontentjd.csv', 'a+') as out_file:
-          writer = csv.writer(out_file)
-          writer.writerow((i," ".join(list(lis1))))
-        with open('stopwordsjd.csv', 'a+') as out_file:
-          writer = csv.writer(out_file)
-          writer.writerow((i," ".join(list(lis5))))
+         #writedata1(lis1)
+         writedata2(lis5)
+        
+       
         lis1.clear() 
         lis5.clear()
          
@@ -130,7 +141,7 @@ map3={}
 preparedic(map1,map2)
 #initialize1()
 #cleanlog(map1)
-prep(map3)
 initialize2()
 initialize3()
+prep(map3)
 cleanlog1(map2,map3)
