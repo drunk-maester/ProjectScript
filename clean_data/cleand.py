@@ -36,7 +36,10 @@ def initialize2():
         writer = csv.writer(out_file)
         writer.writerow(('JD', 'Training Data'))
 
-
+def initialize3():
+ with open('stopwordsjd.csv', 'a+') as out_file:
+        writer = csv.writer(out_file)
+        writer.writerow(('JD', 'stopwords'))
 
 
 def cleanlog(map1):
@@ -65,16 +68,10 @@ def prep(map3):
  for i in df.itertuples():
     map3[i[1]]= i[2]
 
-def cleanlog1(map2, map3):
-     lis1=[]
-     lis5=[]
-     for i in map2:
-        print('Preparing data for', i)
-        lis = (map3[i.lower()]).split(" ")
-        for j in map2[i]:
-         lis2=j.split(" ") 
-         print('Cleaning starts, total number of words now ', len(lis2))
-         for k in lis :
+
+
+def cleanbylis(lis , lis2, lis1):
+     for k in set(lis) :
                if k in lis2:
                  if(lis2.count(k)>1):
                       lis1.extend(k for x in range(lis2.count(k)))
@@ -84,23 +81,48 @@ def cleanlog1(map2, map3):
                  else:     
                    lis1.append(k)
                    lis2.remove(k)
-         
-         c= Counter(lis2)
-         print('Remaining words in lis2 i.e ', i , len(lis2) , c)
-         for v in lis5:
+
+def cleanbylis1(lis5 , lis2):
+     for v in set(lis5):
                a=lis2.count(v)
                for m in range(a):
                   lis2.remove(v)
+
+def cleanbylis2(lis4 , lis5 , lis1 , lis2):
+     for i in lis4:
+           lis1.extend(i for x in range(lis2.count(i)))
+     
+     cleanbylis1(lis4,lis2)
+     lis5.extend(lis2)
+           
+def cleanlog1(map2, map3):
+     lis1=[]
+     lis5=[]
+     for i in map2:
+        print('Preparing data for', i)
+        lis = (map3[i.lower()]).split(" ")
+        for j in map2[i]:
+         lis2=j.split(" ") 
+         print('Cleaning starts, total number of words now ', len(lis2))
+         cleanbylis1(lis1 , lis2)
+         cleanbylis(lis , lis2 , lis1)
+         
+         
+         cleanbylis1(lis5, lis2)
+         c= Counter(lis2)       
          print('Remaining words in lis2 i.e ', i , len(lis2) , c)
          print('Enter words you want to keep ...')
          lis4= input("-----> ").split(' ')
-         for i in lis2:
-             print('count of ')
-         lis1.extend(lis4)
+         cleanbylis2(lis4 , lis5 , lis1 , lis2)
+         
         with open('finalcontentjd.csv', 'a+') as out_file:
           writer = csv.writer(out_file)
           writer.writerow((i," ".join(list(lis1))))
+        with open('stopwordsjd.csv', 'a+') as out_file:
+          writer = csv.writer(out_file)
+          writer.writerow((i," ".join(list(lis5))))
         lis1.clear() 
+        lis5.clear()
          
 map1={}  
 map2={}
@@ -110,4 +132,5 @@ preparedic(map1,map2)
 #cleanlog(map1)
 prep(map3)
 initialize2()
+initialize3()
 cleanlog1(map2,map3)
