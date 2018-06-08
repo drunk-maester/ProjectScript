@@ -1,8 +1,7 @@
 import csv
-import threading
-import json
 import pandas as pd
 from collections import Counter
+
 def preparedic(map1,map2):
  
  with open('log.csv' , 'r+') as f:
